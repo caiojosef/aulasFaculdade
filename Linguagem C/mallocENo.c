@@ -20,6 +20,13 @@ Lista * inserir(Lista *pL, int elemento){
 		return novo;
 	}
 }
+
+void imprime(Lista * pL){
+	while(pL != NULL){
+		printf("\n[%d] -> ", pL->info);
+		pL = pL->next;
+	}
+}
 int main(int argc, char *argv[]) {
 	
 	Lista *L;
@@ -29,5 +36,8 @@ int main(int argc, char *argv[]) {
 	L = inserir(L, 100);
 	L = inserir(L, 10);
 	L = inserir(L, 1);
+		printf("\n Imprimindo a Lista! \n");
+	imprime(L);
+
 	return 0;
 }
