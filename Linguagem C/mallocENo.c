@@ -58,6 +58,52 @@ Lista *remover(Lista * pL, int valor){
 	return aux;
 }
 
+void inserirNoFim(Lista * pLista, int info){
+	
+	Lista * opc, * aux = (Lista *)malloc(sizeof(Lista));
+	
+	if(opc)
+	{
+		opc->info = info;
+		opc->next = NULL;
+		
+			if(pLista->next == NULL)
+			pLista->next = opc;
+			
+		else
+		{
+			aux = pLista->next;
+			
+			while(aux->next)
+				aux = aux->next;
+			
+			aux->next = opc;
+		}
+	}
+}
+
+Lista * Dividir(Lista * pLista, Lista ** novaLista, int info){
+	int find = 0, insert;
+	Lista * aux = pLista;
+
+	while(pLista != NULL)
+	{
+		if(find == 1)
+		{
+			novaLista = InserirNaLista(novaLista, pLista->info);
+		}
+		
+		if(find == 0 && pLista->info == info)
+		{
+			find = 1;
+		}
+			
+		pLista = pLista->next;
+	}
+	
+	return novaLista;
+}
+
 int main(int argc, char *argv[]) {
 	
 	Lista *L;
@@ -76,12 +122,20 @@ int main(int argc, char *argv[]) {
 	if(getEnd != NULL)
 		printf("\n Valor %d existe na lista e está na posicao: %p \n", getEnd->info, getEnd);
 		
-	L = remover(L, 1);
+	//L = remover(L, 1);
 	printf("\n Imprimindo a Lista! \n");
 	imprime(L);	
 	
 	//criar uma função para inserir dados no final da lista.
+	printf("\n Inserir o valor na lista:\n");
+	int insert;
+	scanf("%d", &insert);
+	inserirNoFim(L, insert);
+	imprime(L);
+	
+	
 	//Criar uma função para encontrar um valor na lista e dividir a lista em 2.
+	Dividir(L,)
 
-	return 0;
+	return 0;
 }
