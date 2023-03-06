@@ -23,6 +23,20 @@ bool push(tpilha *pp, int valor){
 	return true;
 }
 
+bool pop(tpilha * pp, int *getValor){
+	tpilha aux;
+	if(*pp==NULL){
+		return false;
+	}
+	else{
+		aux = *pp;
+		*getValor = (*pp)->dado;
+		*pp = (*pp)->prox;
+		free(aux);
+		return true;
+	}
+}
+
 int main(int argc, char *argv[]) {	
 	tpilha p;
 	criarPilha(&p);
@@ -39,7 +53,10 @@ int main(int argc, char *argv[]) {
 	else
 		printf("\n ERRO!");
 	
-	
+	if(pop(&p, &valor))
+		printf("%d valor removido da pilha! \n" , valor);
+	else 
+		printf("Pilha Vazia");
 	
 	
 	return 0;
